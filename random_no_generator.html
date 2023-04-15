@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Random Generator</title>
+    <link rel="stylesheet" href="styles/style.css" />
+    <link rel="stylesheet" href="styles/random_no_generator.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+      <div class="container-fluid">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="random-gen-container">
+      <div class="container">
+        <h1>Random Number Generator</h1>
+        <p class="lead mt-3">Returns a random number between two numbers</p>
+        <div class="card mb-3" style="width: 40rem">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Normal Random Number Generator</h5>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                >Lower Limit</span
+              >
+              <input
+                id="rng-normal-input-1"
+                type="number"
+                class="form-control"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                >Upper Limit</span
+              >
+              <input
+                id="rng-normal-input-2"
+                type="number"
+                class="form-control"
+              />
+            </div>
+            <div class="d-flex justify-content-center">
+              <button
+                id="rng-normal-generate"
+                type="button"
+                class="btn btn-success m-3"
+              >
+                Generate
+              </button>
+              <button
+                id="rng-normal-clear"
+                type="button"
+                class="btn btn-secondary m-3"
+              >
+                Clear
+              </button>
+            </div>
+            <div>
+              <p id="normal-result"></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="width: 40rem">
+          <div class="card-body">
+            <h5 class="card-title mb-3">Advanced Random Number Generator</h5>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                >Lower Limit</span
+              >
+              <input
+                id="rng-advanced-input-1"
+                type="text"
+                class="form-control"
+              />
+            </div>
+            <div class="input-group mb-3">
+              <span class="input-group-text" id="basic-addon1"
+                >Upper Limit</span
+              >
+              <input
+                id="rng-advanced-input-2"
+                type="text"
+                class="form-control"
+              />
+            </div>
+            <div class="input-group mb-4">
+              <span class="input-group-text" id="basic-addon1"
+                >Total Numbers</span
+              >
+              <input
+                id="rngAdvTotalNoInput"
+                type="number"
+                class="form-control"
+                value="1"
+              />
+            </div>
+
+            <div id="rng-duplication" class="mb-3" style="display: none">
+              <label class="form-check-label mb-3 d-block text-center"
+                >Allow duplication in results?</label
+              >
+              <div class="d-flex justify-content-center">
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="rngDubYes"
+                  />
+                  <label class="form-check-label" for="rngDubYes"> Yes </label>
+                </div>
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault"
+                    id="rngDubNo"
+                    checked
+                  />
+                  <label class="form-check-label" for="rngDubNo"> No </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="rng-sort" class="mb-3" style="display: none">
+              <label class="form-check-label mb-3 d-block text-center"
+                >Sort the Results?</label
+              >
+              <div class="d-flex justify-content-center">
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault1"
+                    id="rngSortAsc"
+                  />
+                  <label class="form-check-label" for="rngSortAsc">
+                    Ascend
+                  </label>
+                </div>
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault1"
+                    id="rngSortDes"
+                  />
+                  <label class="form-check-label" for="rngSortDes">
+                    Descend
+                  </label>
+                </div>
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault1"
+                    id="rngSortNo"
+                    checked
+                  />
+                  <label class="form-check-label" for="rngSortNo"> No </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="rng-type-number" class="mb-3">
+              <label class="form-check-label mb-3 d-block text-center"
+                >Type of result to generate?</label
+              >
+              <div class="d-flex justify-content-center">
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault3"
+                    id="rngTypeInt"
+                    checked
+                  />
+                  <label class="form-check-label" for="rngTypeInt">
+                    Integer
+                  </label>
+                </div>
+                <div class="form-check mx-3">
+                  <input
+                    class="form-check-input"
+                    type="radio"
+                    name="flexRadioDefault3"
+                    id="rngTypeDec"
+                  />
+                  <label class="form-check-label" for="rngTypeDec">
+                    Decimal
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div id="max-digit" class="input-group mb-3" style="display: none">
+              <span class="input-group-text" id="basic-addon1"
+                >Maximum digits</span
+              >
+              <input
+                id="max-digit-input"
+                type="text"
+                class="form-control"
+                value="2"
+              />
+            </div>
+
+            <div class="d-flex justify-content-center">
+              <button
+                id="rng-advanced-generate"
+                type="button"
+                class="btn btn-success m-3"
+              >
+                Generate
+              </button>
+              <button
+                id="rng-advanced-clear"
+                type="button"
+                class="btn btn-secondary m-3"
+              >
+                Clear
+              </button>
+            </div>
+            <div class="card">
+              <div id="advanced-result-title" class="card-header"></div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">An item</li>
+                <li class="list-group-item">A second item</li>
+                <li class="list-group-item">A third item</li>
+              </ul>
+              <span id="advanced-result" class="card-body"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="random_no_generator.js"></script>
+  </body>
+</html>
