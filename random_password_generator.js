@@ -9,6 +9,30 @@ const rpgResultTitle = document.querySelector("#rpg-result-title");
 const rpgResult = document.querySelector("#rpg-result");
 const rpgGenButton = document.querySelector("#rpg-gen-button");
 
+input1.addEventListener("input", () => {
+  if (input1.value > 50) {
+    input1.value = 50;
+  }
+  if (input1.value < 4) {
+    input1.value = 4;
+  }
+  input2.value = input1.value;
+});
+
+input2.addEventListener("input", () => {
+  if (input2.value > 50) {
+    input2.value = 50;
+  }
+  if (input2.value < 4) {
+    input2.value = 4;
+  }
+  input1.value = input2.value;
+});
+
+function copyText(copy) {
+  navigator.clipboard.writeText(copy);
+}
+
 rpgGenButton.addEventListener("click", () => {
   let result = "";
   // prettier-ignore
@@ -18,19 +42,42 @@ rpgGenButton.addEventListener("click", () => {
   // prettier-ignore
   const symbols = ['!', '"', '#', '$', '%', '&', '\'', '(', ')', '*', '+', ',', '-', '.', '/', ':', ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|', '}', '~'];
 
+  let notEnoughNumbers = false;
+
   if (
     !rpgCheckNumber.checked &&
     !rpgCheckLower.checked &&
     !rpgCheckUpper.checked &&
     !rpgCheckSymbol.checked
   ) {
-    console.log("En az bir checkbox seçeneği seçmelisiniz!");
+    rpgResult.innerHTML = `
+          <li class="list-group-item ">${result} <a type="button" class="" onclick="(() => copyText("${result}"))()"> <i class="fa-regular fa-copy "> </i> </a></li>`;
   } else {
-    for (let i = 0; i < input1.value; i++) {
-      if (rpgCheckNoRepeat) {
-        const randomIndex = Math.floor(Math.random() * 3);
+    if (rpgCheckNoRepeat.checked) {
+      const noRepeat = [];
 
+      let maxLength = 0;
+      if (rpgCheckNumber.checked) {
+        maxLength += numbers.length;
+      }
+      if (rpgCheckLower.checked || rpgCheckUpper.checked) {
+        maxLength += letters.length;
+      }
+      if (rpgCheckSymbol.checked) {
+        maxLength += symbols.length;
+      }
+
+      for (let i = 0; i < input1.value; i++) {
+        if (noRepeat.length >= Math.min(input1.value, maxLength)) {
+          rpgResult.innerHTML = `
+          <li class="list-group-item bg-danger-subtle text-warning-emphasis">d.</li>`;
+          notEnoughNumbers = true;
+          break;
+        }
+
+        const randomIndex = Math.floor(Math.random() * 3);
         let randomChar;
+
         if (randomIndex === 0 && rpgCheckNumber.checked) {
           const randomIndexNumbers = Math.floor(Math.random() * numbers.length);
           randomChar = numbers[randomIndexNumbers];
@@ -52,28 +99,63 @@ rpgGenButton.addEventListener("click", () => {
           } else {
             i -= 1;
           }
-          if (randomChar === undefined) {
-            continue;
-          }
         } else if (randomIndex === 2 && rpgCheckSymbol.checked) {
           const randomIndexSymbols = Math.floor(Math.random() * symbols.length);
           randomChar = symbols[randomIndexSymbols];
         } else {
           i -= 1;
         }
+
         if (randomChar === undefined) {
           continue;
         }
-        result += randomChar;
-      } else {
-        const NoRepeat = [];
 
-        while (
-          NoRepeat.length <
-          numbers.length + letters.length + symbols.length
-        ) {}
+        if (noRepeat.includes(randomChar)) {
+          i -= 1;
+          continue;
+        } else {
+          noRepeat.push(randomChar);
+        }
+
+        result += randomChar;
       }
-      console.log(result);
+      if (notEnoughNumbers == false) {
+        // rpgResult.innerHTML = `
+        //   <li class="list-group-item "><span class="">${result}</span></li>`;
+        rpgResult.innerHTML = `
+          <li class="list-group-item bg-danger-subtle text-warning-emphasis">Not enough characters to generate such a long non-repeating password.</li>`;
+      }
+    } else {
+      for (let i = 0; i < input1.value; i++) {
+        const randomIndex = Math.floor(Math.random() * 3);
+        let randomChar;
+
+        if (randomIndex === 0 && rpgCheckNumber.checked) {
+          const randomIndexNumbers = Math.floor(Math.random() * numbers.length);
+          randomChar = numbers[randomIndexNumbers];
+        } else if (
+          randomIndex === 1 &&
+          (rpgCheckLower.checked || rpgCheckUpper.checked)
+        ) {
+          const randomIndexLetters = Math.floor(Math.random() * letters.length);
+          randomChar = rpgCheckLower.checked
+            ? letters[randomIndexLetters]
+            : letters[randomIndexLetters].toUpperCase();
+        } else if (randomIndex === 2 && rpgCheckSymbol.checked) {
+          const randomIndexSymbols = Math.floor(Math.random() * symbols.length);
+          randomChar = symbols[randomIndexSymbols];
+        } else {
+          i -= 1;
+        }
+
+        if (randomChar === undefined) {
+          continue;
+        }
+
+        result += randomChar;
+      }
+      rpgResult.innerHTML = `
+          <li class="list-group-item ">${result} <a type="button" class="" onclick="(() => copyText("${result}"))()"> <i class="fa-regular fa-copy "> </i> </a></li>`;
     }
   }
 });
