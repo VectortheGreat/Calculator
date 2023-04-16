@@ -8,6 +8,9 @@ const rpgCheckNoRepeat = document.querySelector("#rpgChechkNoRepeat");
 const rpgResultTitle = document.querySelector("#rpg-result-title");
 const rpgResult = document.querySelector("#rpg-result");
 const rpgGenButton = document.querySelector("#rpg-gen-button");
+const rpgCheckboxes = document.querySelectorAll(
+  "#check-boxes input[type='checkbox']"
+);
 
 input1.addEventListener("input", () => {
   if (input1.value > 50) {
@@ -17,6 +20,7 @@ input1.addEventListener("input", () => {
     input1.value = 4;
   }
   input2.value = input1.value;
+  generatePassword();
 });
 
 input2.addEventListener("input", () => {
@@ -27,13 +31,10 @@ input2.addEventListener("input", () => {
     input2.value = 4;
   }
   input1.value = input2.value;
+  generatePassword();
 });
 
-function copyText(copy) {
-  navigator.clipboard.writeText(copy);
-}
-
-rpgGenButton.addEventListener("click", () => {
+function generatePassword() {
   let result = "";
   // prettier-ignore
   const numbers = ['1','2','3','4','5','6','7','8','9'];
@@ -51,7 +52,7 @@ rpgGenButton.addEventListener("click", () => {
     !rpgCheckSymbol.checked
   ) {
     rpgResult.innerHTML = `
-          <li class="list-group-item ">${result} <a type="button" class="" onclick="(() => copyText("${result}"))()"> <i class="fa-regular fa-copy "> </i> </a></li>`;
+          <li class="list-group-item bg-danger-subtle text-warning-emphasis">Please include at least one characters set for the password to be based on.</li>`;
   } else {
     if (rpgCheckNoRepeat.checked) {
       const noRepeat = [];
@@ -70,7 +71,8 @@ rpgGenButton.addEventListener("click", () => {
       for (let i = 0; i < input1.value; i++) {
         if (noRepeat.length >= Math.min(input1.value, maxLength)) {
           rpgResult.innerHTML = `
-          <li class="list-group-item bg-danger-subtle text-warning-emphasis">d.</li>`;
+          <li class="list-group-item bg-danger-subtle text-warning-emphasis">Not enough characters to generate such a long non-repeating password.</li>`;
+
           notEnoughNumbers = true;
           break;
         }
@@ -120,10 +122,8 @@ rpgGenButton.addEventListener("click", () => {
         result += randomChar;
       }
       if (notEnoughNumbers == false) {
-        // rpgResult.innerHTML = `
-        //   <li class="list-group-item "><span class="">${result}</span></li>`;
         rpgResult.innerHTML = `
-          <li class="list-group-item bg-danger-subtle text-warning-emphasis">Not enough characters to generate such a long non-repeating password.</li>`;
+          <li class="list-group-item "><span class="">${result}</span></li>`;
       }
     } else {
       for (let i = 0; i < input1.value; i++) {
@@ -137,10 +137,20 @@ rpgGenButton.addEventListener("click", () => {
           randomIndex === 1 &&
           (rpgCheckLower.checked || rpgCheckUpper.checked)
         ) {
-          const randomIndexLetters = Math.floor(Math.random() * letters.length);
-          randomChar = rpgCheckLower.checked
-            ? letters[randomIndexLetters]
-            : letters[randomIndexLetters].toUpperCase();
+          const randomIndexLet = Math.floor(Math.random() * 2);
+          if (randomIndexLet === 0 && rpgCheckLower.checked) {
+            const randomIndexLetters = Math.floor(
+              Math.random() * letters.length
+            );
+            randomChar = letters[randomIndexLetters];
+          } else if (randomIndexLet === 1 && rpgCheckUpper.checked) {
+            const randomIndexLetters = Math.floor(
+              Math.random() * letters.length
+            );
+            randomChar = letters[randomIndexLetters].toUpperCase();
+          } else {
+            i -= 1;
+          }
         } else if (randomIndex === 2 && rpgCheckSymbol.checked) {
           const randomIndexSymbols = Math.floor(Math.random() * symbols.length);
           randomChar = symbols[randomIndexSymbols];
@@ -155,7 +165,16 @@ rpgGenButton.addEventListener("click", () => {
         result += randomChar;
       }
       rpgResult.innerHTML = `
-          <li class="list-group-item ">${result} <a type="button" class="" onclick="(() => copyText("${result}"))()"> <i class="fa-regular fa-copy "> </i> </a></li>`;
+          <li class="list-group-item "><span class="">${result}</span></li>`;
     }
   }
+}
+
+rpgGenButton.addEventListener("click", generatePassword);
+rpgCheckboxes.forEach((checkbox) => {
+  checkbox.addEventListener("click", generatePassword);
+});
+
+window.addEventListener("load", () => {
+  generatePassword();
 });
