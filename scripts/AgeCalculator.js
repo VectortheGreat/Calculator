@@ -99,9 +99,6 @@ const calculateAge = () => {
   const date2 = new Date(
     `${ageCalcLastYear.value}-${selectedLMonth}-${selectedLday}`
   );
-  //   console.log(`${ageCalcBirthYear.value}-${selectedBMonth}-${selectedBday}`);
-  //   console.log(`${ageCalcLastYear.value}-${selectedLMonth}-${selectedLday}`);
-
   const timeDiff = date2.getTime() - date1.getTime();
   const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24));
   const diffHours = Math.ceil(diffDays * 24);

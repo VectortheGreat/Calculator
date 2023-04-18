@@ -1,0 +1,9 @@
+#conversion-ul-list * {
+  width: 25%;
+  text-align: center;
+}
+
+.input-group span {
+  width: 25%;
+  text-align: center;
+}
