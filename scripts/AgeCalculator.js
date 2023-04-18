@@ -19,18 +19,13 @@ let date2;
 let selectedMonth;
 let maxDays;
 
-function populateDays() {
+function birthPopulateDays() {
   selectedMonth = parseInt(ageCalcBirthMonths.value, 10);
   maxDays = getMaxDays(selectedMonth);
-
-  //   ageCalcBirthDays.innerHTML = "";
-
-  //   for (let i = 1; i <= maxDays; i++) {
-  //     const option = document.createElement("option");
-  //     option.value = i;
-  //     option.textContent = i;
-  //     ageCalcBirthDays.appendChild(option);
-  //   }
+}
+function lastPopulateDays() {
+  selectedMonth = parseInt(ageCalcLastMonths.value, 10);
+  maxDays = getMaxDays(selectedMonth);
 }
 
 function getMaxDays(month) {
@@ -50,14 +45,27 @@ function getMaxDays(month) {
   }
 }
 
-ageCalcBirthMonths.addEventListener("change", function () {
-  populateDays();
-  console.log(ageCalcBirthDays.value);
-
+const changeBDays = () => {
+  birthPopulateDays();
   if (maxDays === 28 && ageCalcBirthDays.value > 28) {
-    console.log(true);
+    ageCalcBirthDays.value = 28;
+  } else if (maxDays === 30 && ageCalcBirthDays.value > 30) {
+    ageCalcBirthDays.value = 30;
   }
-});
+};
+const changeLDays = () => {
+  lastPopulateDays();
+  if (maxDays === 28 && ageCalcLastDays.value > 28) {
+    ageCalcLastDays.value = 28;
+  } else if (maxDays === 30 && ageCalcLastDays.value > 30) {
+    ageCalcLastDays.value = 30;
+  }
+};
+
+ageCalcBirthMonths.addEventListener("change", changeBDays);
+ageCalcBirthDays.addEventListener("change", changeBDays);
+ageCalcLastMonths.addEventListener("change", changeLDays);
+ageCalcLastDays.addEventListener("change", changeLDays);
 
 //Birth Date
 const selectBirthDay = (event) => {
@@ -126,3 +134,32 @@ const calculateAge = () => {
   }
 };
 ageCalcButton.addEventListener("click", calculateAge);
+
+const clearButton = () => {
+  ageCalcBirthDays.value = 1;
+  ageCalcBirthMonths.value = 1;
+  ageCalcBirthYear.value = 2023;
+  ageCalcLastDays.value = 1;
+  ageCalcLastMonths.value = 1;
+  ageCalcLastYear.value = 2023;
+  ageCalcResult.innerHTML = "";
+};
+ageCalcClearButton.addEventListener("click", clearButton);
+
+const bPreventLowUpDates = () => {
+  if (ageCalcBirthYear.value < 100) {
+    ageCalcBirthYear.value = 100;
+  } else if (ageCalcBirthYear.value > 275760) {
+    ageCalcBirthYear.value = 275760;
+  }
+};
+const lPreventLowUpDates = () => {
+  if (ageCalcLastYear.value < 100) {
+    ageCalcLastYear.value = 100;
+  } else if (ageCalcLastYear.value > 275760) {
+    ageCalcLastYear.value = 275760;
+  }
+};
+
+ageCalcLastYear.addEventListener("change", lPreventLowUpDates);
+ageCalcBirthYear.addEventListener("change", bPreventLowUpDates);
