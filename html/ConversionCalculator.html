@@ -64,6 +64,7 @@
               <a
                 href="#"
                 class="list-group-item list-group-item-action list-group-item-primary"
+                onclick="showLCalculate()"
                 >Length</a
               >
               <a href="#" class="list-group-item list-group-item-action"
@@ -81,52 +82,8 @@
             </ul>
             <div class="container mt-3">
               <div class="row">
-                <div class="col-6">
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">From</span>
-                    <input
-                      id="length-input-from"
-                      type="number"
-                      class="form-control"
-                    />
-                  </div>
-                  <select id="lenght-left" class="form-select" size="11">
-                    <option value="0" selected>Meter</option>
-                    <option value="1">Kilometer</option>
-                    <option value="2">Centimeter</option>
-                    <option value="3">Milimeter</option>
-                    <option value="4">Micrometer</option>
-                    <option value="5">Nanometer</option>
-                    <option value="6">Mile</option>
-                    <option value="7">Yard</option>
-                    <option value="8">Foot</option>
-                    <option value="9">Inch</option>
-                    <option value="10">Light Year</option>
-                  </select>
-                </div>
-                <div class="col-6">
-                  <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">To</span>
-                    <input
-                      id="length-input-to"
-                      type="number"
-                      class="form-control"
-                    />
-                  </div>
-                  <select id="length-right" class="form-select" size="11">
-                    <option value="0">Meter</option>
-                    <option value="1" selected>Kilometer</option>
-                    <option value="2">Centimeter</option>
-                    <option value="3">Milimeter</option>
-                    <option value="4">Micrometer</option>
-                    <option value="5">Nanometer</option>
-                    <option value="6">Mile</option>
-                    <option value="7">Yard</option>
-                    <option value="8">Foot</option>
-                    <option value="9">Inch</option>
-                    <option value="10">Light Year</option>
-                  </select>
-                </div>
+                <div id="leftCol" class="col-6"></div>
+                <div id="rightCol" class="col-6"></div>
               </div>
             </div>
             <div class="card mt-3">
