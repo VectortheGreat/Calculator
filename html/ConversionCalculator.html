@@ -55,6 +55,8 @@
         <p class="lead mt-3">
           Use this Conversion Calculator to convert between commonly used units.
         </p>
+
+        <!-- Length -->
         <div class="card mb-3" style="width: 40rem">
           <div class="card-body">
             <ul
@@ -64,26 +66,59 @@
               <a
                 href="#"
                 class="list-group-item list-group-item-action list-group-item-primary"
-                onclick="showLCalculate()"
                 >Length</a
-              >
-              <a href="#" class="list-group-item list-group-item-action"
-                >Temperature</a
-              >
-              <a href="#" class="list-group-item list-group-item-action"
-                >Area</a
-              >
-              <a href="#" class="list-group-item list-group-item-action"
-                >Volume</a
-              >
-              <a href="#" class="list-group-item list-group-item-action"
-                >Weight</a
               >
             </ul>
             <div class="container mt-3">
               <div class="row">
-                <div id="leftCol" class="col-6"></div>
-                <div id="rightCol" class="col-6"></div>
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">From</span>
+                    <input
+                      id="length-input-from"
+                      type="number"
+                      class="form-control"
+                      value="1"
+                    />
+                  </div>
+                  <select id="lenghtLeft" class="form-select" size="11">
+                    <option value="0" selected>Meter</option>
+                    <option value="1">Kilometer</option>
+                    <option value="2">Centimeter</option>
+                    <option value="3">Milimeter</option>
+                    <option value="4">Micrometer</option>
+                    <option value="5">Nanometer</option>
+                    <option value="6">Mile</option>
+                    <option value="7">Yard</option>
+                    <option value="8">Foot</option>
+                    <option value="9">Inch</option>
+                    <option value="10">Light Year</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">To</span>
+                    <input
+                      id="length-input-to"
+                      type="number"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <select id="lenghtRight" class="form-select" size="11">
+                    <option value="0">Meter</option>
+                    <option value="1" selected>Kilometer</option>
+                    <option value="2">Centimeter</option>
+                    <option value="3">Milimeter</option>
+                    <option value="4">Micrometer</option>
+                    <option value="5">Nanometer</option>
+                    <option value="6">Mile</option>
+                    <option value="7">Yard</option>
+                    <option value="8">Foot</option>
+                    <option value="9">Inch</option>
+                    <option value="10">Light Year</option>
+                  </select>
+                </div>
               </div>
             </div>
             <div class="card mt-3">
@@ -94,6 +129,299 @@
                 id="conversion-result"
                 class="list-group list-group-flush"
               ></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Temperature -->
+        <div class="card mb-3" style="width: 40rem">
+          <div class="card-body">
+            <ul
+              id="conversion-ul-list"
+              class="list-group list-group-horizontal"
+            >
+              <a
+                href="#"
+                class="list-group-item list-group-item-action list-group-item-primary"
+                >Temperature</a
+              >
+            </ul>
+            <div class="container mt-3">
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">From</span>
+                    <input
+                      id="temp-input-from"
+                      type="number"
+                      class="form-control"
+                      value="1"
+                    />
+                  </div>
+                  <select id="tempLeft" class="form-select" size="11">
+                    <option value="0" selected>Celsius</option>
+                    <option value="1">Kelvin</option>
+                    <option value="2">Fahrenheit</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">To</span>
+                    <input
+                      id="temp-input-to"
+                      type="number"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <select id="tempRight" class="form-select" size="11">
+                    <option value="0">Celsius</option>
+                    <option value="1" selected>Kelvin</option>
+                    <option value="2">Fahrenheit</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div id="tconversion-result-title " class="card-header">
+                Result
+              </div>
+              <ul
+                id="tconversion-result"
+                class="list-group list-group-flush"
+              ></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Area -->
+        <div class="card mb-3" style="width: 40rem">
+          <div class="card-body">
+            <ul
+              id="conversion-ul-list"
+              class="list-group list-group-horizontal"
+            >
+              <a href="#" class="list-group-item list-group-item-action"
+                >Area</a
+              >
+            </ul>
+            <div class="container mt-3">
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">From</span>
+                    <input
+                      id="area-input-from"
+                      type="number"
+                      class="form-control"
+                      value="1"
+                    />
+                  </div>
+                  <select id="areaLeft" class="form-select" size="11">
+                    <option value="0" selected>Square Meter</option>
+                    <option value="1">Square Kilmoeter</option>
+                    <option value="2">Square Centimeter</option>
+                    <option value="3">Square Millimeter</option>
+                    <option value="4">Square Micrometer</option>
+                    <option value="5">Hectare</option>
+                    <option value="6">Square Mile</option>
+                    <option value="7">Square Yard</option>
+                    <option value="8">Square Foot</option>
+                    <option value="9">Square Inch</option>
+                    <option value="10">Acre</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">To</span>
+                    <input
+                      id="area-input-to"
+                      type="number"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <select id="areaRight" class="form-select" size="11">
+                    <option value="0">Square Meter</option>
+                    <option value="1" selected>Square Kilmoeter</option>
+                    <option value="2">Square Centimeter</option>
+                    <option value="3">Square Millimeter</option>
+                    <option value="4">Square Micrometer</option>
+                    <option value="5">Hectare</option>
+                    <option value="6">Square Mile</option>
+                    <option value="7">Square Yard</option>
+                    <option value="8">Square Foot</option>
+                    <option value="9">Square Inch</option>
+                    <option value="10">Acre</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div id="area-result-title " class="card-header">Result</div>
+              <ul id="area-result" class="list-group list-group-flush"></ul>
+            </div>
+          </div>
+        </div>
+        <!-- Volume -->
+        <div class="card mb-3" style="width: 40rem">
+          <div class="card-body">
+            <ul
+              id="conversion-ul-list"
+              class="list-group list-group-horizontal"
+            >
+              <a href="#" class="list-group-item list-group-item-action"
+                >Volume</a
+              >
+            </ul>
+            <div class="container mt-3">
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">From</span>
+                    <input
+                      id="volume-input-from"
+                      type="number"
+                      class="form-control"
+                      value="1"
+                    />
+                  </div>
+                  <select id="volumeLeft" class="form-select" size="11">
+                    <option value="0" selected>Cubic Meter</option>
+                    <option value="1">Cubic Kilmoeter</option>
+                    <option value="2">Cubic Centimeter</option>
+                    <option value="3">Cubic Millimeter</option>
+                    <option value="4">Liter</option>
+                    <option value="5">Milliliter</option>
+                    <option value="6">US Gallon</option>
+                    <option value="7">US Quart</option>
+                    <option value="8">US Pint</option>
+                    <option value="9">US Cup</option>
+                    <option value="10">US Fluid Ounce</option>
+                    <option value="11">US Table Spoon</option>
+                    <option value="12">US Tea Spoon</option>
+                    <option value="13">Imperial Gallon</option>
+                    <option value="14">Imperial Quart</option>
+                    <option value="15">Imperial Pint</option>
+                    <option value="16">Imperial Cup</option>
+                    <option value="17">Imperial Fluid Ounce</option>
+                    <option value="18">Imperial Table Spoon</option>
+                    <option value="19">Imperial Tea Spoon</option>
+                    <option value="20">Cubic Mile</option>
+                    <option value="21">Cubic Yard</option>
+                    <option value="22">Cubic Foot</option>
+                    <option value="23">Cubic Inch</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">To</span>
+                    <input
+                      id="volume-input-to"
+                      type="number"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <select id="volumeRight" class="form-select" size="11">
+                    <option value="0">Cubic Meter</option>
+                    <option value="1" selected>Cubic Kilmoeter</option>
+                    <option value="2">Cubic Centimeter</option>
+                    <option value="3">Cubic Millimeter</option>
+                    <option value="4">Liter</option>
+                    <option value="5">Milliliter</option>
+                    <option value="6">US Gallon</option>
+                    <option value="7">US Quart</option>
+                    <option value="8">US Pint</option>
+                    <option value="9">US Cup</option>
+                    <option value="10">US Fluid Ounce</option>
+                    <option value="11">US Table Spoon</option>
+                    <option value="12">US Tea Spoon</option>
+                    <option value="13">Imperial Gallon</option>
+                    <option value="14">Imperial Quart</option>
+                    <option value="15">Imperial Pint</option>
+                    <option value="16">Imperial Fluid Ounce</option>
+                    <option value="17">Imperial Table Spoon</option>
+                    <option value="18">Imperial Tea Spoon</option>
+                    <option value="19">Cubic Mile</option>
+                    <option value="20">Cubic Yard</option>
+                    <option value="21">Cubic Foot</option>
+                    <option value="22">Cubic Inch</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div id="volume-result-title " class="card-header">Result</div>
+              <ul id="volume-result" class="list-group list-group-flush"></ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Weight -->
+        <div class="card mb-3" style="width: 40rem">
+          <div class="card-body">
+            <ul
+              id="conversion-ul-list"
+              class="list-group list-group-horizontal"
+            >
+              <a href="#" class="list-group-item list-group-item-action"
+                >Weight</a
+              >
+            </ul>
+            <div class="container mt-3">
+              <div class="row">
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">From</span>
+                    <input
+                      id="weight-input-from"
+                      type="number"
+                      class="form-control"
+                      value="1"
+                    />
+                  </div>
+                  <select id="weightLeft" class="form-select" size="11">
+                    <option value="0" selected>Kilogram</option>
+                    <option value="1">Gram</option>
+                    <option value="2">Miligram</option>
+                    <option value="3">Metric Ton</option>
+                    <option value="4">Long Ton</option>
+                    <option value="5">Short Ton</option>
+                    <option value="6">Pound</option>
+                    <option value="7">Ounce</option>
+                    <option value="8">Carrat</option>
+                    <option value="9">Atomic Mass Unit</option>
+                  </select>
+                </div>
+                <div class="col-6">
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-addon1">To</span>
+                    <input
+                      id="weight-input-to"
+                      type="number"
+                      class="form-control"
+                      disabled
+                    />
+                  </div>
+                  <select id="weightRight" class="form-select" size="11">
+                    <option value="0">Kilogram</option>
+                    <option value="1" selected>Gram</option>
+                    <option value="2">Miligram</option>
+                    <option value="3">Metric Ton</option>
+                    <option value="4">Long Ton</option>
+                    <option value="5">Short Ton</option>
+                    <option value="6">Pound</option>
+                    <option value="7">Ounce</option>
+                    <option value="8">Carrat</option>
+                    <option value="9">Atomic Mass Unit</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="card mt-3">
+              <div id="weight-result-title " class="card-header">Result</div>
+              <ul id="weight-result" class="list-group list-group-flush"></ul>
             </div>
           </div>
         </div>
