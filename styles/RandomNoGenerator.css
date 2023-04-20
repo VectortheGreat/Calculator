@@ -9,3 +9,17 @@ input[type="number"]::-webkit-outer-spin-button {
   align-items: center;
   flex-direction: column;
 }
+@media screen and (max-width: 768px) {
+  * {
+    font-size: 1rem;
+  }
+  .card-body .container {
+    max-width: auto;
+  }
+  #card {
+    width: 20rem;
+  }
+  .row {
+    margin: 0;
+  }
+}

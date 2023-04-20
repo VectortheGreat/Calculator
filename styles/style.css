@@ -12,3 +12,31 @@
 #card {
   width: 40rem;
 }
+#navbarContainer {
+  display: flex !important;
+  align-items: flex-start;
+}
+#navbarSupportedContent {
+  display: flex !important;
+  align-items: center;
+}
+
+@media screen and (max-width: 1250px) {
+  #navbarContainer {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  #navbarSupportedContent {
+    display: flex !important;
+    align-items: center;
+  }
+}
+@media screen and (max-width: 768px) {
+  #home-row > div {
+    display: flex !important;
+    align-items: flex-start;
+    justify-content: center;
+  }
+}

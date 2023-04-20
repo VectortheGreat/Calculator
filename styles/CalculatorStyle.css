@@ -1,6 +1,3 @@
-* {
-  box-sizing: border-box;
-}
 input {
   border: 0;
   text-align: right;
@@ -40,4 +37,26 @@ button {
 }
 .calc-card #calc-input-bot {
   border-top: 1px solid black;
+}
+
+@media screen and (max-width: 768px) {
+  .col-3 > button {
+    border: 1px solid black;
+    width: 5rem;
+  }
+  .col-3 {
+    padding: 0rem !important;
+  }
+  .card-body .container {
+    max-width: auto;
+  }
+  .card-body {
+    padding: 0 !important;
+  }
+  #card {
+    width: 25rem;
+  }
+  .row {
+    margin: 0;
+  }
 }

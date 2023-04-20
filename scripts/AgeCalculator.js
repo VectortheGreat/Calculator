@@ -15,7 +15,7 @@ let selectedLday = 1;
 let selectedLMonth = 1;
 let date1;
 let date2;
-
+let currentYear = new Date();
 let selectedMonth;
 let maxDays;
 
@@ -127,7 +127,7 @@ const calculateAge = () => {
           <li class="list-group-item "><span class="">${diffSeconds.toLocaleString("en")} seconds</span></li>`;
   } else {
     ageCalcResult.innerHTML += `
-          <li class="list-group-item bg-danger-subtle text-warning-emphasis">Date of birth needs to be earlier than the age at date..</li>`;
+          <li class="list-group-item bg-danger-subtle text-warning-emphasis">Date of birth needs to be earlier than current date..</li>`;
   }
 };
 ageCalcButton.addEventListener("click", calculateAge);
@@ -135,10 +135,10 @@ ageCalcButton.addEventListener("click", calculateAge);
 const clearButton = () => {
   ageCalcBirthDays.value = 1;
   ageCalcBirthMonths.value = 1;
-  ageCalcBirthYear.value = 2023;
+  ageCalcBirthYear.value = currentYear.getFullYear();
   ageCalcLastDays.value = 1;
   ageCalcLastMonths.value = 1;
-  ageCalcLastYear.value = 2023;
+  ageCalcLastYear.value = currentYear.getFullYear();
   ageCalcResult.innerHTML = "";
 };
 ageCalcClearButton.addEventListener("click", clearButton);
@@ -160,3 +160,7 @@ const lPreventLowUpDates = () => {
 
 ageCalcLastYear.addEventListener("change", lPreventLowUpDates);
 ageCalcBirthYear.addEventListener("change", bPreventLowUpDates);
+
+window.addEventListener("load", () => {
+  clearButton();
+});

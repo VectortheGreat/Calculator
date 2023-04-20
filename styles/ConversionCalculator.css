@@ -13,3 +13,29 @@
   align-items: center;
   flex-direction: column;
 }
+@media screen and (max-width: 768px) {
+  * {
+    font-size: 1rem;
+  }
+  .card-body .container {
+    max-width: auto;
+  }
+  #card {
+    width: 20rem;
+  }
+  .row {
+    margin: 0;
+  }
+  #birth-date-div * {
+    width: 50%;
+    font-size: 0.75rem;
+  }
+  #last-date-div * {
+    width: 50%;
+    font-size: 0.75rem;
+  }
+  .input-group span {
+    width: 50%;
+    text-align: center;
+  }
+}
